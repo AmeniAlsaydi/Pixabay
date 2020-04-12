@@ -24,9 +24,15 @@ class SearchViewController: UIViewController {
     private var photos = [Photo]() {
         didSet {
             DispatchQueue.main.async {
-                self.collectionView.backgroundView = nil
+                if self.photos.count == 0 {
+                    self.collectionView.backgroundView = EmptyView(title: "No Photos Found", message: "Check your search and try again!", imageName: "questionmark.diamond")
+                    
+                } else {
+                    self.collectionView.backgroundView = nil
+                }
                 self.collectionView.reloadData()
             }
+            
         }
     }
     

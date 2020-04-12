@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wWc-y0-a1V">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,14 +27,70 @@
         <!--Explore-->
         <scene sceneID="pAn-sq-3AX">
             <objects>
-                <viewController id="2WB-Ux-kff" customClass="ExploreViewController" customModule="Pixabay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2WB-Ux-kff" customClass="SearchViewController" customModule="Pixabay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U8M-YW-dDZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="U7r-eq-Rud">
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FOV-or-LuT">
+                                    <size key="itemSize" width="290" height="271"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="VrD-F2-jAe" customClass="PhotoCell" customModule="Pixabay" customModuleProvider="target">
+                                        <rect key="frame" x="62" y="0.0" width="290" height="271"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uZ4-kP-VhC">
+                                            <rect key="frame" x="0.0" y="0.0" width="290" height="271"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.on.rectangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vpJ-XO-95B">
+                                                    <rect key="frame" x="0.0" y="0.0" width="290" height="271"/>
+                                                    <color key="backgroundColor" red="0.76070749940000004" green="0.87012224739999999" blue="0.65597655789999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="vpJ-XO-95B" firstAttribute="leading" secondItem="uZ4-kP-VhC" secondAttribute="leading" id="1gH-am-er3"/>
+                                                <constraint firstItem="vpJ-XO-95B" firstAttribute="top" secondItem="uZ4-kP-VhC" secondAttribute="top" id="Nk0-Yb-ftp"/>
+                                                <constraint firstAttribute="bottom" secondItem="vpJ-XO-95B" secondAttribute="bottom" id="nsb-P1-Mal"/>
+                                                <constraint firstAttribute="trailing" secondItem="vpJ-XO-95B" secondAttribute="trailing" id="tpe-XC-9df"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="290" height="271"/>
+                                        <connections>
+                                            <outlet property="photoImageView" destination="vpJ-XO-95B" id="pYc-cf-h1w"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qNW-QT-kxj">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qNW-QT-kxj" firstAttribute="top" secondItem="WPZ-Qu-v76" secondAttribute="top" id="1J5-z9-DnY"/>
+                            <constraint firstItem="U7r-eq-Rud" firstAttribute="leading" secondItem="WPZ-Qu-v76" secondAttribute="leading" id="1bn-AQ-XTD"/>
+                            <constraint firstItem="U7r-eq-Rud" firstAttribute="bottom" secondItem="WPZ-Qu-v76" secondAttribute="bottom" id="4En-Yf-2jk"/>
+                            <constraint firstItem="U7r-eq-Rud" firstAttribute="top" secondItem="qNW-QT-kxj" secondAttribute="bottom" id="5v2-8h-4ZR"/>
+                            <constraint firstItem="U7r-eq-Rud" firstAttribute="trailing" secondItem="WPZ-Qu-v76" secondAttribute="trailing" id="Eic-Ks-ZxC"/>
+                            <constraint firstItem="qNW-QT-kxj" firstAttribute="leading" secondItem="WPZ-Qu-v76" secondAttribute="leading" id="JgG-XV-fLB"/>
+                            <constraint firstItem="qNW-QT-kxj" firstAttribute="trailing" secondItem="WPZ-Qu-v76" secondAttribute="trailing" id="Tu7-hT-g0f"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WPZ-Qu-v76"/>
                     </view>
                     <navigationItem key="navigationItem" title="Explore" id="fih-3a-o1I"/>
+                    <connections>
+                        <outlet property="collectionView" destination="U7r-eq-Rud" id="4vA-j0-yiY"/>
+                        <outlet property="searchbar" destination="qNW-QT-kxj" id="4X3-c0-4FL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36F-Ys-bz7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,5 +159,6 @@
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="98"/>
     </resources>
 </document>

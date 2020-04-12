@@ -13,12 +13,40 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var searchbar: UISearchBar!
     
+    private var searchQuery = "" {
+        didSet {
+            DispatchQueue.main.async {
+                self.loadPhotos()
+            }
+        }
+    }
+    
+    private var photos = [Photo]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.collectionView.backgroundView = nil
+                self.collectionView.reloadData()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        searchbar.delegate = self
 
     }
     
+    private func loadPhotos() {
+        PhotoApiClient.getPhotos(searchQuery: searchQuery) { (result) in
+            switch result {
+            case .failure(let appError):
+                print("api client error: \(appError)")
+            case .success(let photos):
+                self.photos = photos
+            }
+        }
+    }
     
     private func configureCollectionView() {
         collectionView.dataSource = self
@@ -30,15 +58,16 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        0 // should return photos.count
+        return photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCell else {
-            fatalError("could not down cast to photoCell")
+            fatalError("could not downcast to custom cell")
         }
-        // get instance of photo
-        // congigure photo
+        
+        let photo = photos[indexPath.row]
+        cell.configureCell(with: photo.largeImageURL)
         
         return cell
     }
@@ -59,4 +88,22 @@ extension SearchViewController: UICollectionViewDelegateFlowLayout {
         return UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10)
     }
     
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+        
+        guard let searchText = searchBar.text else {
+            return
+        }
+        
+        guard !searchText.isEmpty else {
+            loadPhotos()
+            return
+        }
+        
+        searchQuery = searchText.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "fun"
+    }
 }

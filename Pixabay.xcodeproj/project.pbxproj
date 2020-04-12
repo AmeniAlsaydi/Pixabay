@@ -74,15 +74,14 @@
 		B74194BE2442ACDA00614A6B /* Pixabay */ = {
 			isa = PBXGroup;
 			children = (
+				B75705B12443C60400051B7B /* Secrets.swift */,
+				B75705B32443C69E00051B7B /* Model */,
 				B75705AC2443C12300051B7B /* Networks */,
 				B75705A22442B4D100051B7B /* Views */,
 				B757059C2442B3D900051B7B /* Supporting files  */,
 				B757059D2442B3EA00051B7B /* Controllers  */,
 				B74194C52442ACDA00614A6B /* Main.storyboard */,
 				B74194D02442ACDD00614A6B /* Info.plist */,
-				B74194C82442ACDA00614A6B /* Pixabay.xcdatamodeld */,
-				B75705AF2443C16200051B7B /* Photo.swift */,
-				B75705B12443C60400051B7B /* Secrets.swift */,
 			);
 			path = Pixabay;
 			sourceTree = "<group>";
@@ -123,6 +122,15 @@
 				B75705AD2443C14900051B7B /* PhotosApiClient.swift */,
 			);
 			path = Networks;
+			sourceTree = "<group>";
+		};
+		B75705B32443C69E00051B7B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B75705AF2443C16200051B7B /* Photo.swift */,
+				B74194C82442ACDA00614A6B /* Pixabay.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

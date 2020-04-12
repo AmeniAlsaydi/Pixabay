@@ -7,10 +7,25 @@
 //
 
 import UIKit
+import ImageKit
 
 class PhotoCell: UICollectionViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
     
+    public func configureCell(with photoUrl: String) {
+        photoImageView.getImage(with: photoUrl) { (result) in
+            switch result {
+            case .failure:
+                DispatchQueue.main.async {
+                    self.photoImageView.image = UIImage(systemName: "exclamationmark-triangle")
+                }
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.photoImageView.image = image
+                }
+            }
+        }
+    }
     
 }

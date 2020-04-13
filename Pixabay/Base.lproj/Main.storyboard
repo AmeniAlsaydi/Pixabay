@@ -11,7 +11,7 @@
         <!--Loved-->
         <scene sceneID="acv-kj-d9U">
             <objects>
-                <viewController id="Jiw-aE-ddi" sceneMemberID="viewController">
+                <viewController id="Jiw-aE-ddi" customClass="FavoriteViewController" customModule="Pixabay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YYh-iA-BRD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,6 +121,9 @@
                                 </constraints>
                                 <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="suit.heart" catalog="system"/>
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="HnQ-PF-ylB" eventType="touchUpInside" id="VAS-9r-ZMW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XD-jk-arP">
                                 <rect key="frame" x="20" y="542" width="374" height="21"/>
@@ -147,6 +150,7 @@
                         <viewLayoutGuide key="safeArea" id="QdM-xy-1gE"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="I03-sq-pWd" id="pad-D6-VlO"/>
                         <outlet property="imageView" destination="Kqp-c2-zQA" id="817-88-kuy"/>
                         <outlet property="likesLabel" destination="8XD-jk-arP" id="aoI-w7-ItV"/>
                         <outlet property="postedByLabel" destination="bJS-Ka-ODh" id="211-8o-vcA"/>
@@ -164,7 +168,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" red="0.87012224739999999" green="0.74660876037555068" blue="0.17390713232415841" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" red="0.79160067379593912" green="0.67677368587602305" blue="0.16446345730895709" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="iNZ-4u-LTB" kind="relationship" relationship="viewControllers" id="TYN-an-yfJ"/>

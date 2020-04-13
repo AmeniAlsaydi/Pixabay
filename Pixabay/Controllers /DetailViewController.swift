@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var postedByLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     private var photo: Photo
     
@@ -56,6 +57,13 @@ class DetailViewController: UIViewController {
             }
         }
         
+    }
+    
+    
+    @IBAction func favoriteButtonPressed(_ sender: UIButton) {
+        favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        // save to core data
+        CoreDataManager.shared.createFavPhoto(imageUrl: photo.largeImageURL, user: photo.user, likes: photo.likes)
     }
     
     

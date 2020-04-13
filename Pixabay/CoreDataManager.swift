@@ -21,6 +21,7 @@ class CoreDataManager {
     // access persistentContainer from the app delegate which was created with core data
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    @discardableResult
     public func createFavPhoto(imageUrl: String, user: String, likes: Int) -> FavoritePhoto {
         let favPhoto = FavoritePhoto(entity: FavoritePhoto.entity(), insertInto: context)
         

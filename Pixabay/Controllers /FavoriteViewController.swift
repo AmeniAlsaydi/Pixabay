@@ -12,6 +12,9 @@ class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let favs =  CoreDataManager.shared.fetchFavs()
+        print(favs.count)
 
     }
 

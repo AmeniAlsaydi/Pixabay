@@ -80,12 +80,12 @@ extension SearchViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let photo = photos[indexPath.row]
-        let detailVC = storyboard?.instantiateViewController(identifier: "DetailViewController") {
-            (coder) in
-            return DetailViewController(coder: coder, photo: photo)
+        guard let detailVC = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+            print("could not down cast to detail vc")
+            return
         }
-        
-        present(detailVC!, animated: true)
+        detailVC.photo = photo
+        present(detailVC, animated: true)
     }
 }
 

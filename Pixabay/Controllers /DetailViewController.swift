@@ -16,16 +16,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     
-    private var photo: Photo
-    
-    init?(coder: NSCoder, photo: Photo) {
-        self.photo = photo
-        super.init(coder:coder)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    public var photo: Photo?
+    public var favPhoto: FavoritePhoto?
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -41,21 +33,44 @@ class DetailViewController: UIViewController {
     
     private func updateUI() {
         
-        postedByLabel.text = "Posted by: @\(photo.user)"
-        likesLabel.text = "♥️ \(photo.likes) likes"
-        
-        imageView.getImage(with: photo.largeImageURL) { (result) in
-            switch result {
-            case .failure:
-                DispatchQueue.main.async {
-                    self.imageView.image = UIImage(systemName: "exclamationmark-triangle")
-                }
-            case .success(let image):
-                DispatchQueue.main.async {
-                    self.imageView.image = image
+        if let photo = photo {
+            postedByLabel.text = "Posted by: \(photo.user)"
+            likesLabel.text = "♥️ \(photo.likes) likes"
+            
+            imageView.getImage(with: photo.largeImageURL) { (result) in
+                switch result {
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.imageView.image = UIImage(systemName: "exclamationmark-triangle")
+                    }
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.imageView.image = image
+                    }
                 }
             }
         }
+        
+        if let favPhoto = favPhoto {
+            favoriteButton.isHidden = true
+            
+            postedByLabel.text = "Posted by: \(favPhoto.user)"
+            likesLabel.text = "♥️ \(favPhoto.likes) likes"
+            
+            imageView.getImage(with: favPhoto.imageURL ?? "") { (result) in
+                switch result {
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.imageView.image = UIImage(systemName: "exclamationmark-triangle")
+                    }
+                case .success(let image):
+                    DispatchQueue.main.async {
+                        self.imageView.image = image
+                    }
+                }
+            }
+        }
+        
         
     }
     
@@ -63,7 +78,11 @@ class DetailViewController: UIViewController {
     @IBAction func favoriteButtonPressed(_ sender: UIButton) {
         favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         // save to core data
-        CoreDataManager.shared.createFavPhoto(imageUrl: photo.largeImageURL, user: photo.user, likes: photo.likes)
+        
+        if let photo = photo {
+            CoreDataManager.shared.createFavPhoto(imageUrl: photo.largeImageURL, user: photo.user, likes: photo.likes)
+        }
+        
     }
     
     

@@ -17,6 +17,10 @@ class FavoriteViewController: UIViewController {
             collectionView.reloadData()
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadFavorites()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +30,7 @@ class FavoriteViewController: UIViewController {
     
     private func loadFavorites() {
         favoritePhotos = CoreDataManager.shared.fetchFavs()
+        
     }
     
     private func configureCollectionView() {
@@ -53,13 +58,14 @@ extension FavoriteViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let photo = favoritePhotos[indexPath.row]
-//        let detailVC = storyboard?.instantiateViewController(identifier: "DetailViewController") {
-//            (coder) in
-//            return DetailViewController(coder: coder, photo: photo)
-//        }
-//
-//        present(detailVC!, animated: true)
+        let photo = favoritePhotos[indexPath.row]
+         guard let detailVC = storyboard?.instantiateViewController(identifier: "DetailViewController") as? DetailViewController else {
+             print("could not down cast to detail vc")
+             return
+         }
+         detailVC.favPhoto = photo
+         present(detailVC, animated: true)
+
     }
 }
 
@@ -79,4 +85,9 @@ extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+// add segue to detail from fav
+// long press to allow them to delete from the stored favs
+// if they click on a filled heart - delete it from the stored favs - maybe use NSPredicate to check if is already in the favs return true
+
 

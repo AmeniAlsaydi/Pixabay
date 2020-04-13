@@ -77,6 +77,16 @@ extension SearchViewController: UICollectionViewDataSource {
         
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let photo = photos[indexPath.row]
+        let detailVC = storyboard?.instantiateViewController(identifier: "DetailViewController") {
+            (coder) in
+            return DetailViewController(coder: coder, photo: photo)
+        }
+        
+        present(detailVC!, animated: true)
+    }
 }
 
 extension SearchViewController: UICollectionViewDelegateFlowLayout {

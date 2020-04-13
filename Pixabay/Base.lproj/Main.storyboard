@@ -99,17 +99,62 @@
         <!--Detail View Controller-->
         <scene sceneID="OBO-nx-7yV">
             <objects>
-                <viewController id="HnQ-PF-ylB" customClass="DetailViewController" customModule="Pixabay" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="HnQ-PF-ylB" customClass="DetailViewController" customModule="Pixabay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5Mj-CL-oc3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kqp-c2-zQA">
+                                <rect key="frame" x="20" y="84" width="374" height="421"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Posted by:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJS-Ka-ODh">
+                                <rect key="frame" x="20" y="513" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I03-sq-pWd">
+                                <rect key="frame" x="354" y="44" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="lxE-Wa-Rfc"/>
+                                    <constraint firstAttribute="width" constant="40" id="ppc-NN-7BF"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" image="suit.heart" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likes " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8XD-jk-arP">
+                                <rect key="frame" x="20" y="542" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Kqp-c2-zQA" firstAttribute="leading" secondItem="QdM-xy-1gE" secondAttribute="leading" constant="20" id="B6q-wA-xbz"/>
+                            <constraint firstItem="QdM-xy-1gE" firstAttribute="trailing" secondItem="8XD-jk-arP" secondAttribute="trailing" constant="20" id="I6k-EE-Lab"/>
+                            <constraint firstItem="8XD-jk-arP" firstAttribute="top" secondItem="bJS-Ka-ODh" secondAttribute="bottom" constant="8" id="Neo-lq-Dd5"/>
+                            <constraint firstItem="QdM-xy-1gE" firstAttribute="trailing" secondItem="bJS-Ka-ODh" secondAttribute="trailing" constant="20" id="NmL-Fk-Dgw"/>
+                            <constraint firstItem="8XD-jk-arP" firstAttribute="leading" secondItem="QdM-xy-1gE" secondAttribute="leading" constant="20" id="cAd-Ub-AZ6"/>
+                            <constraint firstItem="bJS-Ka-ODh" firstAttribute="leading" secondItem="QdM-xy-1gE" secondAttribute="leading" constant="20" id="fa1-6v-qPc"/>
+                            <constraint firstItem="QdM-xy-1gE" firstAttribute="trailing" secondItem="I03-sq-pWd" secondAttribute="trailing" constant="20" id="p13-gE-hAZ"/>
+                            <constraint firstItem="Kqp-c2-zQA" firstAttribute="top" secondItem="I03-sq-pWd" secondAttribute="bottom" id="pMP-dV-lUY"/>
+                            <constraint firstItem="QdM-xy-1gE" firstAttribute="trailing" secondItem="Kqp-c2-zQA" secondAttribute="trailing" constant="20" id="pv7-vz-uXz"/>
+                            <constraint firstItem="bJS-Ka-ODh" firstAttribute="top" secondItem="Kqp-c2-zQA" secondAttribute="bottom" constant="8" id="sjS-FP-ayC"/>
+                            <constraint firstItem="Kqp-c2-zQA" firstAttribute="height" secondItem="5Mj-CL-oc3" secondAttribute="height" multiplier="0.469866" id="uIC-Jd-Ytu"/>
+                            <constraint firstItem="Kqp-c2-zQA" firstAttribute="top" secondItem="QdM-xy-1gE" secondAttribute="top" constant="40" id="xP9-yI-5j9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="QdM-xy-1gE"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="Kqp-c2-zQA" id="817-88-kuy"/>
+                        <outlet property="likesLabel" destination="8XD-jk-arP" id="aoI-w7-ItV"/>
+                        <outlet property="postedByLabel" destination="bJS-Ka-ODh" id="211-8o-vcA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U4B-33-jlO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2413" y="-500"/>
+            <point key="canvasLocation" x="2411.594202898551" y="-500.22321428571428"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="5s9-kb-IGT">
@@ -174,5 +219,6 @@
         <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="suit.heart" catalog="system" width="128" height="109"/>
     </resources>
 </document>

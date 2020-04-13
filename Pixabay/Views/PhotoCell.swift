@@ -21,6 +21,7 @@ class PhotoCell: UICollectionViewCell {
     }
     
     public func configureCell(with photoUrl: String) {
+        
         photoImageView.getImage(with: photoUrl) { (result) in
             switch result {
             case .failure:
